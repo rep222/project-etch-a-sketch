@@ -24,6 +24,9 @@ body{
     background-color: rgb(253, 237, 208);
     border: 1px solid rgba(100,100,100, 0.5);
 }
+.box-transition{
+    transition: all 0.5s ease;
+}
 
 h1 {
     font-size: 80px;

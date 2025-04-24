@@ -26,8 +26,15 @@ function generateDivs(amount) {
         box.style.width = `${boxSize}px`;
         box.style.height = `${boxSize}px`;
         let randomColor = getRandomColor();
+        let opacity = 10;
         hover(box, e => {
-            e.target.style.backgroundColor = randomColor}, 
+            e.currentTarget.className += ' box-transition';
+            e.target.style.backgroundColor = randomColor;
+            if (opacity < 100){
+                opacity += 15;
+            }
+            e.target.style.opacity = `${opacity}%`;
+            }, 
             e => {
                 e.target.style.backgroundColor = randomColor
             }
@@ -39,13 +46,15 @@ function generateDivs(amount) {
 generateDivs(numberOfRows);
 
 sizeBtn.addEventListener('click', () => {
-    let newNumberOfRows = prompt('How many rows do you want?');
-    if (newNumberOfRows === null || newNumberOfRows === ''){
+    let tempRows = prompt('How many rows do you want?');
+    let newNumberOfRows = parseInt(tempRows);
+    if (isNaN(newNumberOfRows)){
+        alert('Sorry, that is not a valid number');
         return;
     }else if (newNumberOfRows > 100){
         alert('Sorry, maximum number is 100');
         return;
-    } else {
+    }else {
         numberOfRows = newNumberOfRows;
         generateDivs(numberOfRows);
     }
